@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dino Runner</title>
+    <title>Lil Runna</title>
     <style>
         body { text-align: center; background: white; color: black; overflow: hidden; }
         canvas { background: white; display: block; margin: auto; border: 1px solid black; }
@@ -13,10 +13,10 @@
         const canvas = document.getElementById("gameCanvas");
         const ctx = canvas.getContext("2d");
         
-        let dino, obstacles, score, gameOver, lastTime;
+        let runna, obstacles, score, gameOver, lastTime;
         
         function resetGame() {
-            dino = { x: 50, y: 150, width: 20, height: 20, gravity: 1, lift: -12, velocity: 0 };
+            runna = { x: 50, y: 150, width: 20, height: 20, gravity: 1, lift: -12, velocity: 0 };
             obstacles = [];
             score = 0;
             gameOver = false;
@@ -24,9 +24,9 @@
             updateGame(lastTime);
         }
         
-        function drawDino() {
+        function drawRunna() {
             ctx.fillStyle = "black";
-            ctx.fillRect(dino.x, dino.y, dino.width, dino.height);
+            ctx.fillRect(runna.x, runna.y, runna.width, runna.height);
         }
         
         function drawObstacles() {
@@ -43,12 +43,12 @@
             
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            dino.velocity += dino.gravity * deltaTime;
-            dino.y += dino.velocity * deltaTime;
+            runna.velocity += runna.gravity * deltaTime;
+            runna.y += runna.velocity * deltaTime;
             
-            if (dino.y + dino.height >= canvas.height) {
-                dino.y = canvas.height - dino.height;
-                dino.velocity = 0;
+            if (runna.y + runna.height >= canvas.height) {
+                runna.y = canvas.height - runna.height;
+                runna.velocity = 0;
             }
             
             if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < 180) {
@@ -63,15 +63,15 @@
                     score++;
                 }
                 if (
-                    dino.x < obstacle.x + obstacle.width &&
-                    dino.x + dino.width > obstacle.x &&
-                    dino.y + dino.height > obstacle.y
+                    runna.x < obstacle.x + obstacle.width &&
+                    runna.x + runna.width > obstacle.x &&
+                    runna.y + runna.height > obstacle.y
                 ) {
                     gameOver = true;
                 }
             });
             
-            drawDino();
+            drawRunna();
             drawObstacles();
             
             ctx.fillStyle = "black";
@@ -87,8 +87,8 @@
         function jump() {
             if (gameOver) {
                 resetGame();
-            } else if (dino.y + dino.height >= canvas.height - 1) {
-                dino.velocity = dino.lift;
+            } else if (runna.y + runna.height >= canvas.height - 1) {
+                runna.velocity = runna.lift;
             }
         }
         
