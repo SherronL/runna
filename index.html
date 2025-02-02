@@ -8,7 +8,7 @@
     </style>
 </head>
 <body>
-    <canvas id="gameCanvas" width="600" height="200"></canvas>
+    <canvas id="gameCanvas" width="350" height="200"></canvas>
     <script>
         const canvas = document.getElementById("gameCanvas");
         const ctx = canvas.getContext("2d");
@@ -51,7 +51,7 @@
                 dino.velocity = 0;
             }
             
-            if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < 400) {
+            if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < 180) {
                 let height = 20 + Math.random() * 30;
                 obstacles.push({ x: canvas.width, y: canvas.height - height, width: 20, height: height });
             }
@@ -75,7 +75,7 @@
             drawObstacles();
             
             ctx.fillStyle = "black";
-            ctx.fillText("Score: " + score, 10, 20);
+            ctx.fillText(score, 10, 20);
             
             if (gameOver) {
                 ctx.fillText("Game Over!", 200, 100);
